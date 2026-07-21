@@ -1,0 +1,142 @@
+import Link from "next/link";
+import Reveal from "@/components/Reveal";
+import { SectionLabel } from "@/components/ui";
+import { profile, stacks, aiWorkflow } from "@/lib/content";
+import { projects } from "@/lib/projects";
+import { troubles, featuredSlugs } from "@/lib/troubles";
+
+const featuredTroubles = featuredSlugs
+  .map((s) => troubles.find((t) => t.slug === s))
+  .filter((t): t is (typeof troubles)[number] => Boolean(t));
+
+export default function Home() {
+  return (
+    <main className="max-w-3xl mx-auto px-6 py-10">
+      <nav className="flex items-center justify-between py-4 sticky top-0 z-10" style={{ background: "var(--bg)" }}>
+        <span className="mono text-sm font-medium">HSM</span>
+        <div className="flex items-center gap-3 sm:gap-5 text-sm" style={{ color: "var(--muted)" }}>
+          <a href="#projects" className="hover:opacity-70">프로젝트</a>
+          <a href="#troubleshooting" className="hover:opacity-70">트러블슈팅</a>
+          <a href="#contact" className="hover:opacity-70">연락처</a>
+        </div>
+      </nav>
+
+      <header className="pt-8 pb-20">
+        <Reveal>
+          <p className="mono text-sm mb-4" style={{ color: "var(--accent)" }}>➜ ~ whoami</p>
+          <h1 className="text-4xl font-medium tracking-tight mb-4">
+            {profile.name}
+            <span className="text-2xl ml-3" style={{ color: "var(--muted)" }}>{profile.role}</span>
+          </h1>
+          <p className="text-base leading-relaxed max-w-xl" style={{ color: "var(--muted)" }}>{profile.tagline}</p>
+        </Reveal>
+      </header>
+
+      <section className="pb-20">
+        <Reveal>
+          <SectionLabel index="01" title="기술 스택" />
+          <div className="space-y-3">
+            {stacks.map((g) => (
+              <div key={g.label} className="flex flex-col sm:flex-row sm:items-center gap-2">
+                <span className="mono text-xs w-24 shrink-0" style={{ color: "var(--muted)" }}>{g.label}</span>
+                <div className="flex flex-wrap gap-2">
+                  {g.items.map((it) => (
+                    <span key={it} className="text-sm px-3 py-1 rounded-md"
+                          style={{ background: "var(--surface)", border: "1px solid var(--border)" }}>{it}</span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+      </section>
+
+      <section id="projects" className="pb-20 scroll-mt-16">
+        <Reveal><SectionLabel index="02" title="프로젝트" /></Reveal>
+        <div className="space-y-4">
+          {projects.map((p, i) => (
+            <Reveal key={p.slug} delay={i * 80}>
+              <Link href={`/projects/${p.slug}`} className="card block p-5">
+                <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-4 mb-2">
+                  <h3 className="text-base font-medium">{p.title}</h3>
+                  <span className="mono text-xs shrink-0" style={{ color: "var(--muted)" }}>{p.period}</span>
+                </div>
+                <p className="text-sm leading-relaxed mb-3" style={{ color: "var(--muted)" }}>{p.summary}</p>
+                <div className="flex flex-wrap items-center gap-2">
+                  {p.tags.map((t) => (
+                    <span key={t} className="mono text-xs px-2 py-1 rounded"
+                          style={{ background: "var(--surface)", color: "var(--muted)", border: "1px solid var(--border)" }}>{t}</span>
+                  ))}
+                  <span className="mono text-xs ml-auto" style={{ color: "var(--accent)" }}>자세히 →</span>
+                </div>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <section id="troubleshooting" className="pb-20 scroll-mt-16">
+        <Reveal>
+          <div className="flex items-center gap-3 mb-6">
+            <span className="mono text-sm" style={{ color: "var(--accent)" }}>03</span>
+            <h2 className="text-lg font-medium">트러블슈팅</h2>
+            <span className="flex-1 h-px" style={{ background: "var(--border)" }} />
+          </div>
+          <p className="text-sm mb-6 -mt-3" style={{ color: "var(--muted)" }}>문제 → 원인 → 해결의 과정으로 다룬 대표 사례입니다.</p>
+        </Reveal>
+        <div className="space-y-3">
+          {featuredTroubles.map((t, i) => (
+            <Reveal key={t.slug} delay={i * 60}>
+              <Link href={`/troubleshooting/${t.slug}`}
+                    className="block pl-4 py-2 rounded-r-md transition-colors hover:bg-[var(--surface)]"
+                    style={{ borderLeft: "2px solid var(--accent)" }}>
+                <div className="flex items-baseline justify-between gap-3">
+                  <h3 className="text-base font-medium">{t.title}</h3>
+                  <span className="mono text-xs shrink-0" style={{ color: "var(--muted)" }}>{t.tag}</span>
+                </div>
+                <p className="text-sm leading-relaxed mt-1" style={{ color: "var(--muted)" }}>{t.summary}</p>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+        <Reveal>
+          <Link href="/troubleshooting" className="mono text-sm inline-flex items-center gap-1.5 mt-5 hover:opacity-70" style={{ color: "var(--muted)" }}>
+            트러블슈팅 {troubles.length}건 전체 보기 <span aria-hidden>→</span>
+          </Link>
+        </Reveal>
+      </section>
+
+      <section id="ai" className="pb-20 scroll-mt-16">
+        <Reveal>
+          <SectionLabel index="04" title="AI 활용" />
+          <p className="text-sm leading-relaxed mb-6 -mt-2" style={{ color: "var(--muted)" }}>{aiWorkflow.intro}</p>
+        </Reveal>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {aiWorkflow.items.map((item, i) => (
+            <Reveal key={item.title} delay={i * 60}>
+              <div className="h-full p-4 rounded-lg" style={{ background: "var(--surface)", border: "1px solid var(--border)" }}>
+                <h3 className="text-sm font-medium mb-1">{item.title}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>{item.detail}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <section id="contact" className="pb-16 scroll-mt-16">
+        <Reveal>
+          <SectionLabel index="05" title="연락처" />
+          <div className="flex flex-wrap gap-x-8 gap-y-2 text-sm">
+            <a href={`mailto:${profile.email}`} className="hover:opacity-70">
+              <span className="mono text-xs mr-2" style={{ color: "var(--muted)" }}>email</span>{profile.email}
+            </a>
+          </div>
+        </Reveal>
+      </section>
+
+      <footer className="pt-8 text-sm" style={{ color: "var(--muted)", borderTop: "1px solid var(--border)" }}>
+        <p className="pt-6 mono text-xs">© 2026 {profile.name}</p>
+      </footer>
+    </main>
+  );
+}
