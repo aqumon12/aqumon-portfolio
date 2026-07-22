@@ -5,6 +5,7 @@ export const profile = {
   tagline:
     "관리자 웹과 하이브리드 앱을 화면부터 API까지 다룹니다. 웹과 네이티브가 얽혀 어느 한쪽만으로는 풀리지 않는 문제를 주로 맡습니다.",
   email: "gustkdals123@gmail.com",
+  github: "https://github.com/aqumon12",
 };
 
 // AI 지원 개발(AX) — 도구를 팀 방식대로 일하게 만드는 환경 설계

@@ -17,7 +17,7 @@ export default function Home() {
         <div className="flex items-center gap-3 sm:gap-5 text-sm" style={{ color: "var(--muted)" }}>
           <a href="#projects" className="hover:opacity-70">프로젝트</a>
           <a href="#troubleshooting" className="hover:opacity-70">트러블슈팅</a>
-          <a href="#contact" className="hover:opacity-70">연락처</a>
+          <a href="https://github.com/aqumon12" target="_blank" rel="noreferrer" className="hover:opacity-70">GitHub</a>
         </div>
       </nav>
 
@@ -29,6 +29,14 @@ export default function Home() {
             <span className="text-2xl ml-3" style={{ color: "var(--muted)" }}>{profile.role}</span>
           </h1>
           <p className="text-base leading-relaxed max-w-xl" style={{ color: "var(--muted)" }}>{profile.tagline}</p>
+          <div className="flex flex-wrap gap-x-6 gap-y-2 mt-6 text-sm">
+            <a href={`mailto:${profile.email}`} className="mono hover:opacity-70" style={{ color: "var(--muted)" }}>
+              <span className="mr-2" style={{ color: "var(--accent)" }}>email</span>{profile.email}
+            </a>
+            <a href={profile.github} target="_blank" rel="noreferrer" className="mono hover:opacity-70" style={{ color: "var(--muted)" }}>
+              <span className="mr-2" style={{ color: "var(--accent)" }}>github</span>github.com/aqumon12
+            </a>
+          </div>
         </Reveal>
       </header>
 
@@ -123,19 +131,12 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="contact" className="pb-16 scroll-mt-16">
-        <Reveal>
-          <SectionLabel index="05" title="연락처" />
-          <div className="flex flex-wrap gap-x-8 gap-y-2 text-sm">
-            <a href={`mailto:${profile.email}`} className="hover:opacity-70">
-              <span className="mono text-xs mr-2" style={{ color: "var(--muted)" }}>email</span>{profile.email}
-            </a>
-          </div>
-        </Reveal>
-      </section>
-
       <footer className="pt-8 text-sm" style={{ color: "var(--muted)", borderTop: "1px solid var(--border)" }}>
-        <p className="pt-6 mono text-xs">© 2026 {profile.name}</p>
+        <div className="pt-6 flex flex-wrap items-center gap-x-6 gap-y-2">
+          <p className="mono text-xs">© 2026 {profile.name}</p>
+          <a href={`mailto:${profile.email}`} className="mono text-xs hover:opacity-70">{profile.email}</a>
+          <a href={profile.github} target="_blank" rel="noreferrer" className="mono text-xs hover:opacity-70">github.com/aqumon12</a>
+        </div>
       </footer>
     </main>
   );
