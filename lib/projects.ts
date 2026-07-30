@@ -114,7 +114,7 @@ export const projects: Project[] = [
   {
     slug: "admin-web",
     title: "NFT 멤버십 관리자 웹 · 비즈센터",
-    period: "2025.02 ~ 진행 중",
+    period: "2025.02 ~ 2025.12 (이후 유지보수)",
     role: "웹 프론트엔드 · 공통 구조 설계",
     contribution: "전체 커밋의 약 38% 기여 · 직접 머지한 PR 96건",
     team: "프론트 다수 + 백엔드 협업",
