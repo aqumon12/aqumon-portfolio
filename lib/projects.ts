@@ -13,6 +13,7 @@ export type Project = {
   contributions: { title: string; details: string[] }[];
   troubleSlugs: string[];
   results: string[];
+  links?: { label: string; href: string }[];
 };
 
 export const projects: Project[] = [
@@ -103,6 +104,10 @@ export const projects: Project[] = [
           "iOS/Android safe-area 정책 플랫폼 분기, 개발용 앱 수동 빌드·EAS Update(OTA) 수행",
         ],
       },
+    ],
+    links: [
+      { label: "Google Play", href: "https://play.google.com/store/apps/details?id=com.metastar.nticka&hl=ko" },
+      { label: "App Store", href: "https://apps.apple.com/kr/app/id1633810435" },
     ],
     troubleSlugs: ["monorepo-react-dup", "webview-modal-dim", "expo-router-backstack", "webview-token-loop", "sentry-blind-spots"],
     results: [
@@ -224,6 +229,10 @@ export const projects: Project[] = [
           "문의를 직접 받아 데이터 조회·수정, 반복되는 불편은 관리자 기능으로 만들어 해결",
         ],
       },
+    ],
+    links: [
+      { label: "스타픽 Google Play", href: "https://play.google.com/store/apps/details?id=kr.co.imagecube.kpopstarpic&hl=ko" },
+      { label: "스타픽 App Store", href: "https://apps.apple.com/kr/app/id1332930709" },
     ],
     troubleSlugs: ["legacy-settlement-date", "game-score-recovery"],
     results: [

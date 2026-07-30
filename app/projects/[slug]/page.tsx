@@ -53,6 +53,17 @@ export default async function ProjectPage({
             </div>
           ))}
         </dl>
+        {p.links && p.links.length > 0 && (
+          <div className="flex flex-wrap gap-3 mt-5">
+            {p.links.map((l) => (
+              <a key={l.href} href={l.href} target="_blank" rel="noreferrer"
+                 className="mono text-xs px-3 py-1.5 rounded-md hover:opacity-70 inline-flex items-center gap-1.5"
+                 style={{ border: "1px solid var(--border)", color: "var(--accent)" }}>
+                {l.label} <span aria-hidden>↗</span>
+              </a>
+            ))}
+          </div>
+        )}
         <div className="flex flex-wrap gap-2 mt-5">
           {p.tags.map((t) => (
             <span key={t} className="mono text-xs px-2 py-1 rounded"
