@@ -92,8 +92,15 @@ export default async function ProjectPage({
         <div className="space-y-5">
           {p.contributions.map((c) => (
             <div key={c.title} className="pl-4" style={{ borderLeft: "2px solid var(--border)" }}>
-              <h3 className="text-base font-medium mb-1">{c.title}</h3>
-              <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>{c.detail}</p>
+              <h3 className="text-base font-medium mb-1.5">{c.title}</h3>
+              <ul className="space-y-1">
+                {c.details.map((d) => (
+                  <li key={d} className="text-sm leading-relaxed flex gap-2" style={{ color: "var(--muted)" }}>
+                    <span aria-hidden style={{ color: "var(--accent)" }}>·</span>
+                    <span>{d}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>
