@@ -3,7 +3,7 @@ export const profile = {
   role: "프론트엔드 개발자",
   years: "3년 차",
   tagline:
-    "관리자 웹과 하이브리드 앱을 화면부터 API까지 다룹니다. 웹과 네이티브가 얽혀 어느 한쪽만으로는 풀리지 않는 문제를 주로 맡습니다.",
+    "관리자 웹과 하이브리드 앱을 화면부터 API까지 다룹니다. 웹과 네이티브가 얽혀 어느 한쪽만으로는 풀리지 않는 문제도 맡습니다.",
   email: "gustkdals123@gmail.com",
   github: "https://github.com/aqumon12",
 };
