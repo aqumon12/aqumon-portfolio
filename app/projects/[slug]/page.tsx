@@ -53,6 +53,16 @@ export default async function ProjectPage({
             </div>
           ))}
         </dl>
+        {p.highlights && p.highlights.length > 0 && (
+          <div className="flex flex-wrap gap-2 mt-6">
+            {p.highlights.map((h) => (
+              <span key={h} className="text-sm font-medium px-3 py-1.5 rounded-md"
+                    style={{ background: "color-mix(in srgb, var(--accent) 8%, transparent)", color: "var(--accent)", border: "1px solid color-mix(in srgb, var(--accent) 25%, transparent)" }}>
+                {h}
+              </span>
+            ))}
+          </div>
+        )}
         {p.links && p.links.length > 0 && (
           <div className="flex flex-wrap gap-3 mt-5">
             {p.links.map((l) => (
@@ -102,7 +112,7 @@ export default async function ProjectPage({
         <SectionLabel index="03" title="주요 기여" />
         <div className="space-y-5">
           {p.contributions.map((c) => (
-            <div key={c.title} className="pl-4" style={{ borderLeft: "2px solid var(--border)" }}>
+            <div key={c.title} className="pl-4" style={{ borderLeft: "2px solid color-mix(in srgb, var(--accent) 45%, transparent)" }}>
               <h3 className="text-base font-medium mb-1.5">{c.title}</h3>
               <ul className="space-y-1">
                 {c.details.map((d) => (

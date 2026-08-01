@@ -14,6 +14,7 @@ export type Project = {
   troubleSlugs: string[];
   results: string[];
   links?: { label: string; href: string }[];
+  highlights?: string[];
 };
 
 export const projects: Project[] = [
@@ -57,11 +58,12 @@ export const projects: Project[] = [
         ],
       },
       {
-        title: "NFT 전송 직전 온체인 소유자 검증 — 가스비만 날리는 실패 전송 차단",
+        title: "NFT 전송 화면 — 요청부터 푸시 완료까지 진행 상태를 화면이 직접 관리",
         details: [
-          "서버의 NFT 소유 정보가 실제 블록체인과 어긋나면, 남의 NFT에 전송을 시도해 가스비만 잃는 문제",
-          "전송 직전 블록체인에서 실제 소유자를 확인해 잘못된 전송이 나가지 않게 차단",
-          "어긋난 NFT는 서버 데이터가 따라잡을 때까지 24시간 목록에서 숨기고 전체 개수 표시도 보정",
+          "전송 완료가 서버 응답이 아니라 푸시 알림으로 오는 구조 → 전송 건을 저장해 두고 요청·처리 중·완료 상태를 관리",
+          "전송 중인 NFT는 목록에 '전송 중'으로 표시하고 전송 화면 재진입을 막아 중복 전송 방지",
+          "앱이 죽어도 '전송 중'에 갇히지 않게 상태별 만료 처리 (요청 5분·처리 중 24시간)",
+          "목록 데이터(인덱서)가 체인보다 늦을 수 있어, 전송 직전 온체인 소유자를 다시 확인해 가스비만 잃는 전송을 걸러내고 해당 NFT는 24시간 목록에서 숨김",
         ],
       },
       {
@@ -105,6 +107,7 @@ export const projects: Project[] = [
         ],
       },
     ],
+    highlights: ["첫 로드 스크립트 gzip −30%", "화면 멈춤 시간(TBT) −54%", "목 분기 5,164줄 삭제", "단위 테스트 104개"],
     links: [
       { label: "Google Play", href: "https://play.google.com/store/apps/details?id=com.metastar.nticka&hl=ko" },
       { label: "App Store", href: "https://apps.apple.com/kr/app/id1633810435" },
@@ -164,6 +167,7 @@ export const projects: Project[] = [
         ],
       },
     ],
+    highlights: ["폼 34개 공통 구조 적용", "권한 훅 62개 컴포넌트", "PR 96건 리뷰·머지"],
     troubleSlugs: ["cross-domain-cache", "sse-qr-cache"],
     results: [
       "공통 레이어를 먼저 다진 덕분에, 이후 새 도메인(브랜드·푸시·위젯 등)이 추가돼도 같은 패턴으로 일관되게 확장할 수 있었습니다.",
@@ -201,10 +205,10 @@ export const projects: Project[] = [
         ],
       },
       {
-        title: "일일 랭킹 포인트 정산 API 직접 개발·운영 — 자정 경계 집계 누락 발견·수정",
+        title: "일일 랭킹 포인트 정산 — API부터 관리자 페이지까지",
         details: [
-          "게임별 일일 상위 20명에게 등수별 포인트 지급 → 누적 반영 → 푸시 알림까지 이어지는 정산 흐름",
-          "운영 중 자정 무렵의 게임 기록이 집계에서 빠지는 오류를 발견해 바로잡음",
+          "게임별 일일 상위 20명에게 등수별 포인트 지급 → 누적 반영 → 푸시 알림까지 이어지는 정산 흐름 개발",
+          "지급 예정 목록(랭킹)·정산 내역 조회 API와 관리자 화면까지 함께 구현",
         ],
       },
       {
@@ -212,24 +216,26 @@ export const projects: Project[] = [
         details: [
           "회원 관리, 라운지 이벤트 운영(등록·수정·상태 변경·푸시), NFT 발행·인증 통계 대시보드(일간·주간)",
           "파트너 쿠폰·포인트 충전 기능을 화면부터 API까지 구현",
+          "라운지 QR 인증 대시보드 — 인증이 들어오면 웹소켓으로 인증자 목록이 실시간 갱신되고 여러 탭에 동시 반영 (관리자 모드·QR 만료 타이머 포함)",
           "같은 문제를 PHP와 React 두 스택으로 풀어본 경험",
         ],
       },
       {
-        title: "프레임워크 없는 환경에서 vanilla JS Web Components 6종 제작",
+        title: "vanilla JS Web Components로 공용 UI 제작·재사용",
         details: [
           "Shadow DOM·커스텀 엘리먼트·라이프사이클·싱글톤 패턴으로 confirm-dialog, swipe-popup, select-modal 등 재사용 UI 구현",
           "여기서 익힌 컴포넌트 설계가 이후 React 작업의 바탕이 됨",
         ],
       },
       {
-        title: "스타픽 관리자 페이지 개발 + 문의 대응 — 운영 불편을 기능으로 개선",
+        title: "스타픽 — 관리자 기능 개선과 운영 병행",
         details: [
-          "그룹·멤버 등록/수정, 신고 게시글 관리, 공지·팝업·회원 CRUD, 1:1 문의·이벤트 구현",
-          "문의를 직접 받아 데이터 조회·수정, 반복되는 불편은 관리자 기능으로 만들어 해결",
+          "공지·팝업·배너 등 기존 관리자 기능·UI 개선, 하트 관리 페이지는 화면부터 API까지 새로 개발",
+          "문의를 직접 받아 데이터 조회·정정하는 운영 업무 병행",
         ],
       },
     ],
+    highlights: ["점수 저장 3중 검증", "웹소켓 실시간 대시보드", "Web Components 공용 UI"],
     links: [
       { label: "스타픽 Google Play", href: "https://play.google.com/store/apps/details?id=kr.co.imagecube.kpopstarpic&hl=ko" },
       { label: "스타픽 App Store", href: "https://apps.apple.com/kr/app/id1332930709" },
