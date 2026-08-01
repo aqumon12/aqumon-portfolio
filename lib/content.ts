@@ -16,7 +16,7 @@ export const aiWorkflow = {
     {
       title: "패턴의 규칙화",
       detail:
-        "직접 잡은 팀 코드 패턴(도메인 세트, query-key 팩토리, MSW 목 규칙)을 AI 도구의 규칙 문서로 정리해, AI가 만드는 코드도 팀 컨벤션을 따르게 했습니다.",
+        "팀 코드 패턴(도메인 세트, query-key 팩토리, MSW 목 규칙)을 Claude Code 규칙으로 만들어, AI가 만드는 코드도 팀 컨벤션을 따르게 했습니다.",
     },
     {
       title: "스캐폴딩 커맨드",
@@ -26,12 +26,12 @@ export const aiWorkflow = {
     {
       title: "검증 훅",
       detail:
-        "AI가 코드를 수정할 때마다 eslint가 자동으로 돌도록 훅을 걸어뒀습니다. 컨벤션에 어긋난 코드는 그 자리에서 걸리고, AI가 바로 고칩니다.",
+        "AI가 코드를 수정할 때마다 eslint가 자동으로 돌도록 훅을 걸어뒀습니다. 컨벤션에 어긋난 코드는 그 자리에서 걸리고, 토큰·브릿지 같은 핵심 로직은 단위 테스트 104개로 한 번 더 검증합니다.",
     },
     {
       title: "LLM 기능 프로토타이핑",
       detail:
-        "관리자 웹 푸시 문구 초안 생성(목적 입력 → 제목/본문 후보 3개) — NestJS 엔드포인트(Claude API, structured outputs + zod 이중 검증)부터 푸시 폼의 초안 패널까지 모노레포 양쪽을 직접 구현했습니다.",
+        "관리자 웹 푸시 문구 초안 생성(목적 입력 → 제목/본문 후보 3개) — NestJS 엔드포인트(Claude API, structured outputs + zod 이중 검증)부터 푸시 폼의 초안 패널까지 모노레포 양쪽을 구현했습니다.",
     },
   ],
 };
@@ -40,5 +40,5 @@ export const stacks: { label: string; items: string[] }[] = [
   { label: "core", items: ["TypeScript", "Next.js", "React"] },
   { label: "state · data", items: ["TanStack Query", "Zustand", "Zod", "react-hook-form"] },
   { label: "style", items: ["Tailwind CSS"] },
-  { label: "etc", items: ["React Native", "MSW", "Vitest", "Sentry", "ethers v6", "NestJS (학습)", "PHP (레거시)"] },
+  { label: "etc", items: ["React Native", "MSW", "Vitest", "Sentry", "ethers", "NestJS (학습)", "PHP (레거시)"] },
 ];
