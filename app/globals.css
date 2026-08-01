@@ -58,3 +58,10 @@ a:focus-visible {
   outline-offset: 2px;
   border-radius: 4px;
 }
+
+/* 마이크로 인터랙션 */
+html { scroll-behavior: smooth; }
+::selection { background: color-mix(in srgb, var(--accent) 22%, transparent); }
+details.group { transition: border-color 0.15s ease; }
+details.group:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--border)); }
+details.group[open] { border-color: color-mix(in srgb, var(--accent) 35%, var(--border)); }
