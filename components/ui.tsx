@@ -23,3 +23,28 @@ export function BackLink({ href, label }: { href: string; label: string }) {
     </Link>
   );
 }
+
+
+// 트러블슈팅 태그 색상 (앞 분류 기준)
+const TAG_COLORS: Record<string, string> = {
+  "웹뷰": "#7c5cff",
+  "웹": "#2f4bd0",
+  "앱": "#0f9d58",
+  "레거시": "#d97706",
+  "인프라": "#dc2626",
+};
+
+export function TagChip({ tag }: { tag: string }) {
+  const key = Object.keys(TAG_COLORS).find((k) => tag.startsWith(k));
+  const color = key ? TAG_COLORS[key] : "var(--muted)";
+  return (
+    <span className="mono text-xs shrink-0 px-2 py-0.5 rounded"
+          style={{
+            color,
+            background: `color-mix(in srgb, ${color} 9%, transparent)`,
+            border: `1px solid color-mix(in srgb, ${color} 28%, transparent)`,
+          }}>
+      {tag}
+    </span>
+  );
+}

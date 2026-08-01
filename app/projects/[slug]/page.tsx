@@ -38,6 +38,20 @@ export default async function ProjectPage({
 
   return (
     <main className="max-w-3xl mx-auto px-6 py-10">
+      <nav aria-label="페이지 목차" className="hidden xl:flex flex-col gap-2 fixed top-40 text-sm"
+           style={{ right: "max(1.5rem, calc(50% - 24rem - 11rem))", width: "9rem" }}>
+        <span className="mono text-xs mb-1" style={{ color: "var(--muted)" }}>목차</span>
+        {[
+          ["#s-bg", "배경"],
+          ["#s-stack", "기술 선택"],
+          ["#s-contrib", "주요 기여"],
+          ...(p.troubleSlugs.length > 0 ? [["#s-troubles", "트러블슈팅"]] : []),
+          ["#s-results", "결과 · 배운 점"],
+        ].map(([href, label]) => (
+          <a key={href} href={href} className="hover:opacity-100 opacity-60 transition-opacity"
+             style={{ color: "var(--muted)" }}>{label}</a>
+        ))}
+      </nav>
       <div className="py-4">
         <BackLink href="/#projects" label="목록으로" />
       </div>
@@ -82,14 +96,14 @@ export default async function ProjectPage({
         </div>
       </header>
 
-      <section className="pb-12">
+      <section id="s-bg" className="pb-12 scroll-mt-20">
         <SectionLabel index="01" title="배경" />
         <div className="space-y-3 text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
           {p.background.map((b, i) => <p key={i}>{b}</p>)}
         </div>
       </section>
 
-      <section className="pb-12">
+      <section id="s-stack" className="pb-12 scroll-mt-20">
         <SectionLabel index="02" title="기술 선택" />
         <div className="space-y-3">
           {p.stack.map((s) => (
@@ -108,7 +122,7 @@ export default async function ProjectPage({
         </section>
       )}
 
-      <section className="pb-12">
+      <section id="s-contrib" className="pb-12 scroll-mt-20">
         <SectionLabel index="03" title="주요 기여" />
         <p className="text-xs mb-4 -mt-2 mono" style={{ color: "var(--muted)" }}>항목을 누르면 상세 내용이 열립니다</p>
         <div className="space-y-2">
@@ -134,7 +148,7 @@ export default async function ProjectPage({
       </section>
 
       {p.troubleSlugs.length > 0 && (
-        <section className="pb-12">
+        <section id="s-troubles" className="pb-12 scroll-mt-20">
           <SectionLabel index="04" title="대표 트러블슈팅" />
           <div className="space-y-3">
             {p.troubleSlugs.map((ts) => {
@@ -153,7 +167,7 @@ export default async function ProjectPage({
         </section>
       )}
 
-      <section className="pb-12">
+      <section id="s-results" className="pb-12 scroll-mt-20">
         <SectionLabel index={p.troubleSlugs.length > 0 ? "05" : "04"} title="결과 · 배운 점" />
         <ul className="space-y-2 text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
           {p.results.map((r, i) => <li key={i}>· {r}</li>)}

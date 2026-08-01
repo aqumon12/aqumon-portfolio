@@ -115,7 +115,6 @@ export const projects: Project[] = [
     troubleSlugs: ["monorepo-react-dup", "webview-modal-dim", "expo-router-backstack", "webview-token-loop", "sentry-blind-spots"],
     results: [
       "서버가 이미 거부한 토큰을 만료 전이라는 이유로 계속 쓰던 인증을 401 응답 기준으로 바꿔 무한 재요청 루프를 없앴고, 토큰·브릿지처럼 꼬이기 쉬운 로직은 단위 테스트 104개로 잡아뒀습니다.",
-      "잘못된 NFT 전송을 사전에 막아, 가스비만 날리는 실패가 없어졌습니다.",
       "목 분기 5,164줄을 걷어내 백엔드 없이도 성공·실패·빈 값 상태를 바로 확인하며 개발할 수 있게 됐고, 무거운 라이브러리를 지연 로드로 분리해 첫 로드 스크립트를 30%, 화면 멈춤 시간을 절반 넘게 줄였습니다.",
     ],
   },

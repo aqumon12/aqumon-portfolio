@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { BackLink } from "@/components/ui";
+import { BackLink, TagChip } from "@/components/ui";
 import { troubleDiagrams } from "@/components/diagrams";
 import { troubles, getTrouble } from "@/lib/troubles";
 
@@ -46,8 +46,7 @@ export default async function TroublePage({
       </div>
 
       <header className="pt-10 pb-10">
-        <span className="mono text-xs px-2 py-1 rounded"
-              style={{ background: "var(--surface)", color: "var(--muted)", border: "1px solid var(--border)" }}>{t.tag}</span>
+        <TagChip tag={t.tag} />
         <h1 className="text-3xl font-medium tracking-tight mt-4 mb-3 leading-snug">{t.title}</h1>
         <p className="text-base leading-relaxed max-w-xl" style={{ color: "var(--muted)" }}>{t.summary}</p>
       </header>

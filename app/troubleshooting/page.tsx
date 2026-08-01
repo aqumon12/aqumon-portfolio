@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { BackLink, SectionLabel } from "@/components/ui";
+import { BackLink, SectionLabel, TagChip } from "@/components/ui";
 import { troubles, moreTroubles } from "@/lib/troubles";
 
 export const metadata: Metadata = {
@@ -33,7 +33,7 @@ export default function TroubleshootingIndex() {
             >
               <div className="flex items-baseline justify-between gap-3 mb-1">
                 <h2 className="text-base font-medium">{t.title}</h2>
-                <span className="mono text-xs shrink-0" style={{ color: "var(--muted)" }}>{t.tag}</span>
+                <TagChip tag={t.tag} />
               </div>
               <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
                 {t.summary} <span className="mono text-xs" style={{ color: "var(--accent)" }}>자세히 →</span>

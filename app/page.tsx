@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
-import { SectionLabel } from "@/components/ui";
+import { SectionLabel, TagChip } from "@/components/ui";
 import { profile, stacks, aiWorkflow } from "@/lib/content";
 import { projects } from "@/lib/projects";
 import { troubles, featuredSlugs } from "@/lib/troubles";
@@ -100,7 +100,7 @@ export default function Home() {
                     style={{ borderLeft: "2px solid var(--accent)" }}>
                 <div className="flex items-baseline justify-between gap-3">
                   <h3 className="text-base font-medium">{t.title}</h3>
-                  <span className="mono text-xs shrink-0" style={{ color: "var(--muted)" }}>{t.tag}</span>
+                  <TagChip tag={t.tag} />
                 </div>
                 <p className="text-sm leading-relaxed mt-1" style={{ color: "var(--muted)" }}>{t.summary}</p>
               </Link>
