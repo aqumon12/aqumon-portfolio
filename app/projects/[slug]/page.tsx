@@ -110,11 +110,17 @@ export default async function ProjectPage({
 
       <section className="pb-12">
         <SectionLabel index="03" title="주요 기여" />
-        <div className="space-y-5">
+        <p className="text-xs mb-4 -mt-2 mono" style={{ color: "var(--muted)" }}>항목을 누르면 상세 내용이 열립니다</p>
+        <div className="space-y-2">
           {p.contributions.map((c) => (
-            <div key={c.title} className="pl-4" style={{ borderLeft: "2px solid color-mix(in srgb, var(--accent) 45%, transparent)" }}>
-              <h3 className="text-base font-medium mb-1.5">{c.title}</h3>
-              <ul className="space-y-1">
+            <details key={c.title} className="group rounded-lg"
+                     style={{ border: "1px solid var(--border)", background: "var(--surface)" }}>
+              <summary className="flex items-center gap-3 px-4 py-3 cursor-pointer list-none select-none">
+                <span aria-hidden className="shrink-0 w-1 h-4 rounded-full" style={{ background: "var(--accent)" }} />
+                <h3 className="text-[15px] font-medium leading-snug flex-1">{c.title}</h3>
+                <span aria-hidden className="text-xs transition-transform group-open:rotate-90" style={{ color: "var(--muted)" }}>▸</span>
+              </summary>
+              <ul className="space-y-1.5 px-5 pb-4 pt-1">
                 {c.details.map((d) => (
                   <li key={d} className="text-sm leading-relaxed flex gap-2" style={{ color: "var(--muted)" }}>
                     <span aria-hidden style={{ color: "var(--accent)" }}>·</span>
@@ -122,7 +128,7 @@ export default async function ProjectPage({
                   </li>
                 ))}
               </ul>
-            </div>
+            </details>
           ))}
         </div>
       </section>
