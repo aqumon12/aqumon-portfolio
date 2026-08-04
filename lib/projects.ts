@@ -239,7 +239,7 @@ export const projects: Project[] = [
       { label: "스타픽 Google Play", href: "https://play.google.com/store/apps/details?id=kr.co.imagecube.kpopstarpic&hl=ko" },
       { label: "스타픽 App Store", href: "https://apps.apple.com/kr/app/id1332930709" },
     ],
-    troubleSlugs: ["legacy-settlement-date"],
+    troubleSlugs: [],
     results: [
       "프레임워크가 감춰주는 계층까지 직접 다루며, MVC·관계형 DB·REST API를 실제 운영 서비스에서 익혔습니다.",
       "포인트가 실제로 지급되는 정산 로직을 운영하며, 데이터가 어긋나면 곧바로 돈 문제로 이어지는 코드를 다루는 법을 배웠습니다.",
