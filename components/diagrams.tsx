@@ -121,7 +121,88 @@ export function CacheDiagram() {
   );
 }
 
+export function TokenLoopDiagram() {
+  return (
+    <Frame viewBox="0 0 640 290">
+      <defs>
+        <marker id="arw3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill={mutedC} />
+        </marker>
+        <marker id="arw3a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill={accent} />
+        </marker>
+      </defs>
+
+      {/* Before */}
+      <text x={20} y={18} fontSize="11.5" fontWeight="600" style={{ fill: textC }}>Before — 만료 시각 기준</text>
+      <Box x={20} y={32} w={120} h={40} title="API 요청" />
+      <Box x={20} y={104} w={120} h={44} title="토큰 재사용" sub="만료 시각 안 지남" />
+      <Box x={20} y={176} w={120} h={40} title="서버 401 거부" />
+      <line x1={80} y1={72} x2={80} y2={102} stroke={mutedC} strokeWidth="1.3" markerEnd="url(#arw3)" />
+      <line x1={80} y1={148} x2={80} y2={174} stroke={mutedC} strokeWidth="1.3" markerEnd="url(#arw3)" />
+      <path d="M 140 196 C 210 196 210 124 142 124" fill="none" stroke={mutedC} strokeWidth="1.3" strokeDasharray="4 3" markerEnd="url(#arw3)" />
+      <text x={216} y={165} fontSize="10.5" style={{ fill: mutedC }}>무한 반복</text>
+      <text x={20} y={248} fontSize="10.5" style={{ fill: mutedC }}>
+        서버가 이미 거부한 토큰을 만료 시각만 믿고 계속 재사용
+      </text>
+
+      {/* After */}
+      <text x={370} y={18} fontSize="11.5" fontWeight="600" style={{ fill: accent }}>After — 서버 401 기준</text>
+      <Box x={370} y={32} w={120} h={40} title="API 요청" />
+      <Box x={370} y={104} w={130} h={44} title="401 → 강제 갱신" sub="forceRefresh" />
+      <Box x={370} y={176} w={130} h={40} title="새 토큰으로 재시도" />
+      <line x1={430} y1={72} x2={430} y2={102} stroke={accent} strokeWidth="1.3" markerEnd="url(#arw3a)" />
+      <line x1={430} y1={148} x2={430} y2={174} stroke={accent} strokeWidth="1.3" markerEnd="url(#arw3a)" />
+      <text x={370} y={248} fontSize="10.5" style={{ fill: mutedC }}>
+        로그아웃은 재발급 응답이 401일 때만 · 네트워크 오류는 세션 유지
+      </text>
+
+      <line x1={20} y1={260} x2={620} y2={260} stroke={stroke} strokeWidth="1" />
+      <text x={320} y={280} textAnchor="middle" fontSize="10.5" style={{ fill: mutedC }}>
+        같은 문제를 token-refresh-playground에서 재현하고 NestJS 통합 테스트로 증명
+      </text>
+    </Frame>
+  );
+}
+
+export function QrSseDiagram() {
+  return (
+    <Frame viewBox="0 0 640 250">
+      <defs>
+        <marker id="arw4" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill={mutedC} />
+        </marker>
+        <marker id="arw4a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill={accent} />
+        </marker>
+      </defs>
+
+      <Box x={20} y={30} w={160} h={56} title="PC 웹 (비즈센터)" sub="QR 표시 · SSE 대기" />
+      <Box x={440} y={30} w={160} h={56} title="서버" sub="일회용 인증 키 발급" />
+      <Box x={440} y={160} w={160} h={56} title="모바일 앱" sub="QR 스캔 · 인증" />
+
+      <line x1={180} y1={48} x2={438} y2={48} stroke={mutedC} strokeWidth="1.3" markerEnd="url(#arw4)" />
+      <text x={308} y={42} textAnchor="middle" fontSize="10.5" style={{ fill: mutedC }}>1. 키 요청 · SSE 연결</text>
+
+      <line x1={520} y1={158} x2={520} y2={88} stroke={mutedC} strokeWidth="1.3" markerEnd="url(#arw4)" />
+      <text x={532} y={128} fontSize="10.5" style={{ fill: mutedC }}>2. 앱 인증</text>
+
+      <line x1={438} y1={70} x2={180} y2={70} stroke={accent} strokeWidth="1.5" markerEnd="url(#arw4a)" />
+      <text x={308} y={86} textAnchor="middle" fontSize="10.5" style={{ fill: accent }}>3. SSE push → PC 자동 로그인</text>
+
+      <text x={320} y={212} textAnchor="middle" fontSize="11" style={{ fill: textC }}>
+        문제: 1번의 키가 서버 상태 캐시에 남아, 만료된 키가 다음 로그인에 재사용
+      </text>
+      <text x={320} y={232} textAnchor="middle" fontSize="10.5" style={{ fill: mutedC }}>
+        staleTime: 0만으로는 부족 — gcTime: 0까지 적용해 매번 새 키를 발급받도록 해결
+      </text>
+    </Frame>
+  );
+}
+
 export const troubleDiagrams: Record<string, () => ReactNode> = {
   "webview-modal-dim": BridgeDiagram,
   "cross-domain-cache": CacheDiagram,
+  "webview-token-loop": TokenLoopDiagram,
+  "sse-qr-cache": QrSseDiagram,
 };
