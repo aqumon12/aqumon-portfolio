@@ -167,7 +167,7 @@ export function TokenLoopDiagram() {
 
 export function QrSseDiagram() {
   return (
-    <Frame viewBox="0 0 640 250">
+    <Frame viewBox="0 0 640 285">
       <defs>
         <marker id="arw4" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
           <path d="M0,0 L6,3 L0,6 Z" fill={mutedC} />
@@ -190,10 +190,10 @@ export function QrSseDiagram() {
       <line x1={438} y1={70} x2={180} y2={70} stroke={accent} strokeWidth="1.5" markerEnd="url(#arw4a)" />
       <text x={308} y={86} textAnchor="middle" fontSize="10.5" style={{ fill: accent }}>3. SSE push → PC 자동 로그인</text>
 
-      <text x={320} y={212} textAnchor="middle" fontSize="11" style={{ fill: textC }}>
+      <text x={320} y={248} textAnchor="middle" fontSize="11" style={{ fill: textC }}>
         문제: 1번의 키가 서버 상태 캐시에 남아, 만료된 키가 다음 로그인에 재사용
       </text>
-      <text x={320} y={232} textAnchor="middle" fontSize="10.5" style={{ fill: mutedC }}>
+      <text x={320} y={268} textAnchor="middle" fontSize="10.5" style={{ fill: mutedC }}>
         staleTime: 0만으로는 부족 — gcTime: 0까지 적용해 매번 새 키를 발급받도록 해결
       </text>
     </Frame>
