@@ -70,6 +70,16 @@ export default function Home() {
                   <span className="mono text-xs shrink-0" style={{ color: "var(--muted)" }}>{p.period}</span>
                 </div>
                 <p className="text-sm leading-relaxed mb-3" style={{ color: "var(--muted)" }}>{p.summary}</p>
+                {p.highlights && p.highlights.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5 mb-3">
+                    {p.highlights.map((h) => (
+                      <span key={h} className="text-xs font-medium px-2 py-1 rounded"
+                            style={{ background: "color-mix(in srgb, var(--accent) 8%, transparent)", color: "var(--accent)", border: "1px solid color-mix(in srgb, var(--accent) 22%, transparent)" }}>
+                        {h}
+                      </span>
+                    ))}
+                  </div>
+                )}
                 <div className="flex flex-wrap items-center gap-2">
                   {p.tags.map((t) => (
                     <span key={t} className="mono text-xs px-2 py-1 rounded"
