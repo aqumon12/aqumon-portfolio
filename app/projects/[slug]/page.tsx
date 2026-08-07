@@ -96,6 +96,20 @@ export default async function ProjectPage({
         </div>
       </header>
 
+      {p.screenshots && p.screenshots.length > 0 && (
+        <section className="pb-12">
+          <div className="flex gap-3 overflow-x-auto pb-2">
+            {p.screenshots.map((sc) => (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img key={sc.src} src={sc.src} alt={sc.alt}
+                   className="h-72 w-auto rounded-xl shrink-0"
+                   style={{ border: "1px solid var(--border)" }} />
+            ))}
+          </div>
+          <p className="mono text-xs mt-2" style={{ color: "var(--muted)" }}>스토어 공개 이미지</p>
+        </section>
+      )}
+
       {p.slug === "hybrid-app" && (
         <section className="pb-12">
           <SectionLabel index="—" title="구조" />

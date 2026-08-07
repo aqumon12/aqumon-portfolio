@@ -15,6 +15,7 @@ export type Project = {
   results: string[];
   links?: { label: string; href: string }[];
   highlights?: string[];
+  screenshots?: { src: string; alt: string }[];
 };
 
 export const projects: Project[] = [
@@ -108,6 +109,11 @@ export const projects: Project[] = [
       },
     ],
     highlights: ["첫 로드 스크립트 gzip −30%", "화면 멈춤 시간(TBT) −54%", "목 분기 5,164줄 삭제", "단위 테스트 104개"],
+    screenshots: [
+      { src: "/shots/bemember-1.jpg", alt: "비멤버 앱 소개 화면" },
+      { src: "/shots/bemember-2.jpg", alt: "비멤버 앱 화면" },
+      { src: "/shots/bemember-3.jpg", alt: "비멤버 앱 화면" },
+    ],
     links: [
       { label: "Google Play", href: "https://play.google.com/store/apps/details?id=com.metastar.nticka&hl=ko" },
       { label: "App Store", href: "https://apps.apple.com/kr/app/id1633810435" },
@@ -235,6 +241,10 @@ export const projects: Project[] = [
       },
     ],
     highlights: ["점수 저장 3중 검증", "웹소켓 실시간 대시보드", "Web Components 공용 UI"],
+    screenshots: [
+      { src: "/shots/starpick-1.png", alt: "스타픽 앱 화면" },
+      { src: "/shots/starpick-2.png", alt: "스타픽 앱 화면" },
+    ],
     links: [
       { label: "스타픽 Google Play", href: "https://play.google.com/store/apps/details?id=kr.co.imagecube.kpopstarpic&hl=ko" },
       { label: "스타픽 App Store", href: "https://apps.apple.com/kr/app/id1332930709" },

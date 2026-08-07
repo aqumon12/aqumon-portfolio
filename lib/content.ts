@@ -58,29 +58,29 @@ export const featuredWorks: {
     title: "하이브리드 앱-웹 브릿지 & 토큰 인증",
     desc: "앱 로그인 후 브릿지로 받은 JWT를 전 요청에 자동 주입하는 인증 구조. 동시 401은 재발급 한 번으로 합치고, 무한 재요청 루프는 401 기준 강제 갱신으로 차단했습니다.",
     links: [
-      { label: "설계 상세", href: "/projects/hybrid-app" },
-      { label: "무한 루프 트러블", href: "/troubleshooting/webview-token-loop" },
+      { label: "프로젝트 상세", href: "/projects/hybrid-app" },
+      { label: "트러블슈팅", href: "/troubleshooting/webview-token-loop" },
     ],
   },
   {
-    title: "크로스-디바이스 QR 로그인 (웹 영역)",
+    title: "QR 로그인 — 앱으로 찍으면 데스크톱이 로그인",
     desc: "모바일 앱으로 QR을 찍으면 데스크톱이 바로 로그인되는 흐름 — SSE 수신부터 세션 생성, 만료 키 재사용 문제 해결까지 웹 영역을 구현했습니다.",
     links: [
-      { label: "비즈센터 상세", href: "/projects/admin-web" },
-      { label: "키 캐시 트러블", href: "/troubleshooting/sse-qr-cache" },
+      { label: "프로젝트 상세", href: "/projects/admin-web" },
+      { label: "트러블슈팅", href: "/troubleshooting/sse-qr-cache" },
     ],
   },
   {
     title: "NFT 전송 플로우 — 온체인 상태를 다루는 화면",
     desc: "전송 요청부터 완료까지 — 모달과 폴링으로 진행 상태를 관리하고, 전송 중인 NFT는 중복 전송을 막고, 실패하면 원인별 재시도 화면으로 분기합니다.",
-    links: [{ label: "구현 상세", href: "/projects/hybrid-app" }],
+    links: [{ label: "프로젝트 상세", href: "/projects/hybrid-app" }],
   },
   {
     title: "관리자 웹 공통 구조 — 폼 34개를 지탱하는 레이어",
     desc: "API 통신·캐시·폼 공통 구조를 먼저 설계해 전체 화면에 적용했습니다. 연관 화면 캐시를 함께 무효화해 데이터 어긋남을 구조로 막았고, 지금도 팀 기본 패턴입니다.",
     links: [
-      { label: "설계 상세", href: "/projects/admin-web" },
-      { label: "캐시 정합성 트러블", href: "/troubleshooting/cross-domain-cache" },
+      { label: "프로젝트 상세", href: "/projects/admin-web" },
+      { label: "트러블슈팅", href: "/troubleshooting/cross-domain-cache" },
     ],
   },
 ];
