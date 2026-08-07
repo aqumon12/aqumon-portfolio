@@ -37,6 +37,19 @@ export default function Home() {
               <span className="mr-2" style={{ color: "var(--accent)" }}>github</span>github.com/aqumon12
             </a>
           </div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-10">
+            {[
+              ["−54%", "화면 멈춤 시간(TBT) 실측 개선"],
+              ["폼 34개", "공통 구조로 만든 관리자 화면"],
+              ["104개", "핵심 로직 단위 테스트"],
+              ["96건", "동료 PR 리뷰 후 머지"],
+            ].map(([v, k]) => (
+              <div key={v} className="rounded-lg px-4 py-3" style={{ background: "var(--surface)", border: "1px solid var(--border)" }}>
+                <div className="text-xl font-semibold" style={{ color: "var(--accent)" }}>{v}</div>
+                <div className="text-xs mt-1 leading-snug" style={{ color: "var(--muted)" }}>{k}</div>
+              </div>
+            ))}
+          </div>
         </Reveal>
       </header>
 

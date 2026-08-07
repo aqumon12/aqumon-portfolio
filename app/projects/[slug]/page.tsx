@@ -42,11 +42,11 @@ export default async function ProjectPage({
            style={{ right: "max(1.5rem, calc(50% - 24rem - 11rem))", width: "9rem" }}>
         <span className="mono text-xs mb-1" style={{ color: "var(--muted)" }}>목차</span>
         {[
-          ["#s-bg", "배경"],
-          ["#s-stack", "기술 선택"],
           ["#s-contrib", "주요 기여"],
           ...(p.troubleSlugs.length > 0 ? [["#s-troubles", "트러블슈팅"]] : []),
           ["#s-results", "결과 · 배운 점"],
+          ["#s-bg", "배경"],
+          ["#s-stack", "기술 선택"],
         ].map(([href, label]) => (
           <a key={href} href={href} className="hover:opacity-100 opacity-60 transition-opacity"
              style={{ color: "var(--muted)" }}>{label}</a>
@@ -96,25 +96,6 @@ export default async function ProjectPage({
         </div>
       </header>
 
-      <section id="s-bg" className="pb-12 scroll-mt-20">
-        <SectionLabel index="01" title="배경" />
-        <div className="space-y-3 text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
-          {p.background.map((b, i) => <p key={i}>{b}</p>)}
-        </div>
-      </section>
-
-      <section id="s-stack" className="pb-12 scroll-mt-20">
-        <SectionLabel index="02" title="기술 선택" />
-        <div className="space-y-3">
-          {p.stack.map((s) => (
-            <div key={s.name} className="flex flex-col sm:flex-row gap-1 sm:gap-4">
-              <span className="text-sm font-medium sm:w-52 shrink-0">{s.name}</span>
-              <span className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>{s.why}</span>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {p.slug === "hybrid-app" && (
         <section className="pb-12">
           <SectionLabel index="—" title="구조" />
@@ -123,11 +104,11 @@ export default async function ProjectPage({
       )}
 
       <section id="s-contrib" className="pb-12 scroll-mt-20">
-        <SectionLabel index="03" title="주요 기여" />
+        <SectionLabel index="01" title="주요 기여" />
         <p className="text-xs mb-4 -mt-2 mono" style={{ color: "var(--muted)" }}>항목을 누르면 상세 내용이 열립니다</p>
         <div className="space-y-2">
-          {p.contributions.map((c) => (
-            <details key={c.title} className="group rounded-lg"
+          {p.contributions.map((c, ci) => (
+            <details key={c.title} open={ci === 0} className="group rounded-lg"
                      style={{ border: "1px solid var(--border)", background: "var(--surface)" }}>
               <summary className="flex items-center gap-3 px-4 py-3 cursor-pointer list-none select-none">
                 <span aria-hidden className="shrink-0 w-1 h-4 rounded-full" style={{ background: "var(--accent)" }} />
@@ -149,7 +130,7 @@ export default async function ProjectPage({
 
       {p.troubleSlugs.length > 0 && (
         <section id="s-troubles" className="pb-12 scroll-mt-20">
-          <SectionLabel index="04" title="대표 트러블슈팅" />
+          <SectionLabel index="02" title="대표 트러블슈팅" />
           <div className="space-y-3">
             {p.troubleSlugs.map((ts) => {
               const t = getTrouble(ts);
@@ -168,10 +149,29 @@ export default async function ProjectPage({
       )}
 
       <section id="s-results" className="pb-12 scroll-mt-20">
-        <SectionLabel index={p.troubleSlugs.length > 0 ? "05" : "04"} title="결과 · 배운 점" />
+        <SectionLabel index={p.troubleSlugs.length > 0 ? "03" : "02"} title="결과 · 배운 점" />
         <ul className="space-y-2 text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
           {p.results.map((r, i) => <li key={i}>· {r}</li>)}
         </ul>
+      </section>
+
+      <section id="s-bg" className="pb-12 scroll-mt-20">
+        <SectionLabel index="04" title="배경" />
+        <div className="space-y-3 text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
+          {p.background.map((b, i) => <p key={i}>{b}</p>)}
+        </div>
+      </section>
+
+      <section id="s-stack" className="pb-12 scroll-mt-20">
+        <SectionLabel index="05" title="기술 선택" />
+        <div className="space-y-3">
+          {p.stack.map((s) => (
+            <div key={s.name} className="flex flex-col sm:flex-row gap-1 sm:gap-4">
+              <span className="text-sm font-medium sm:w-52 shrink-0">{s.name}</span>
+              <span className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>{s.why}</span>
+            </div>
+          ))}
+        </div>
       </section>
 
       <footer className="pt-8" style={{ borderTop: "1px solid var(--border)" }}>
