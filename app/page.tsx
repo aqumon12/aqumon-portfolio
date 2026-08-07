@@ -1,13 +1,9 @@
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
-import { SectionLabel, TagChip } from "@/components/ui";
-import { profile, stacks, aiWorkflow } from "@/lib/content";
+import { SectionLabel } from "@/components/ui";
+import { profile, stacks, aiWorkflow, featuredWorks } from "@/lib/content";
 import { projects } from "@/lib/projects";
-import { troubles, featuredSlugs } from "@/lib/troubles";
-
-const featuredTroubles = featuredSlugs
-  .map((s) => troubles.find((t) => t.slug === s))
-  .filter((t): t is (typeof troubles)[number] => Boolean(t));
+import { troubles } from "@/lib/troubles";
 
 export default function Home() {
   return (
@@ -16,7 +12,7 @@ export default function Home() {
         <span className="mono text-sm font-medium">HSM</span>
         <div className="flex items-center gap-3 sm:gap-5 text-sm" style={{ color: "var(--muted)" }}>
           <a href="#projects" className="hover:opacity-70">프로젝트</a>
-          <a href="#troubleshooting" className="hover:opacity-70">트러블슈팅</a>
+          <a href="#troubleshooting" className="hover:opacity-70">대표 작업</a>
           <a href="https://github.com/aqumon12" target="_blank" rel="noreferrer" className="hover:opacity-70">GitHub</a>
         </div>
       </nav>
@@ -72,8 +68,34 @@ export default function Home() {
         </Reveal>
       </section>
 
+      <section id="troubleshooting" className="pb-20 scroll-mt-16">
+        <Reveal><SectionLabel index="02" title="대표 작업" /></Reveal>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {featuredWorks.map((w, i) => (
+            <Reveal key={w.title} delay={i * 60}>
+              <div className="h-full p-5 rounded-lg flex flex-col" style={{ background: "var(--surface)", border: "1px solid var(--border)" }}>
+                <h3 className="text-base font-semibold leading-snug">{w.title}</h3>
+                <p className="text-sm leading-relaxed mt-2 flex-1" style={{ color: "var(--muted)" }}>{w.desc}</p>
+                <div className="flex flex-wrap gap-x-4 gap-y-1 mt-3">
+                  {w.links.map((l) => (
+                    <Link key={l.href + l.label} href={l.href} className="mono text-xs hover:opacity-70" style={{ color: "var(--accent)" }}>
+                      {l.label} →
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+        <Reveal>
+          <Link href="/troubleshooting" className="mono text-sm inline-flex items-center gap-1.5 mt-5 hover:opacity-70" style={{ color: "var(--muted)" }}>
+            트러블슈팅 {troubles.length}건 전체 보기 <span aria-hidden>→</span>
+          </Link>
+        </Reveal>
+      </section>
+
       <section id="projects" className="pb-20 scroll-mt-16">
-        <Reveal><SectionLabel index="02" title="프로젝트" /></Reveal>
+        <Reveal><SectionLabel index="03" title="프로젝트" /></Reveal>
         <div className="space-y-4">
           {projects.map((p, i) => (
             <Reveal key={p.slug} delay={i * 80}>
@@ -104,37 +126,6 @@ export default function Home() {
             </Reveal>
           ))}
         </div>
-      </section>
-
-      <section id="troubleshooting" className="pb-20 scroll-mt-16">
-        <Reveal>
-          <div className="flex items-center gap-3 mb-6">
-            <span className="mono text-sm" style={{ color: "var(--accent)" }}>03</span>
-            <h2 className="text-lg font-medium">트러블슈팅</h2>
-            <span className="flex-1 h-px" style={{ background: "var(--border)" }} />
-          </div>
-          <p className="text-sm mb-6 -mt-3" style={{ color: "var(--muted)" }}>문제 → 원인 → 해결의 과정으로 다룬 대표 사례입니다.</p>
-        </Reveal>
-        <div className="space-y-3">
-          {featuredTroubles.map((t, i) => (
-            <Reveal key={t.slug} delay={i * 60}>
-              <Link href={`/troubleshooting/${t.slug}`}
-                    className="block pl-4 py-2 rounded-r-md transition-colors hover:bg-[var(--surface)]"
-                    style={{ borderLeft: "2px solid var(--accent)" }}>
-                <div className="flex items-baseline justify-between gap-3">
-                  <h3 className="text-base font-medium">{t.title}</h3>
-                  <TagChip tag={t.tag} />
-                </div>
-                <p className="text-sm leading-relaxed mt-1" style={{ color: "var(--muted)" }}>{t.summary}</p>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
-        <Reveal>
-          <Link href="/troubleshooting" className="mono text-sm inline-flex items-center gap-1.5 mt-5 hover:opacity-70" style={{ color: "var(--muted)" }}>
-            트러블슈팅 {troubles.length}건 전체 보기 <span aria-hidden>→</span>
-          </Link>
-        </Reveal>
       </section>
 
       <section id="ai" className="pb-20 scroll-mt-16">
