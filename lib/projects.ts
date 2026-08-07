@@ -83,8 +83,6 @@ export const projects: Project[] = [
         ],
       },
     ],
-      },
-    ],
     highlights: ["첫 로드 스크립트 gzip −30%", "화면 멈춤 시간(TBT) −54%", "목 분기 5,164줄 삭제", "단위 테스트 104개"],
     screenshots: [
       { src: "/shots/bemember-1.jpg", alt: "비멤버 앱 소개 화면" },
