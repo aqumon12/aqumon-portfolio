@@ -38,18 +38,6 @@ export default async function ProjectPage({
 
   return (
     <main className="max-w-3xl mx-auto px-6 py-10">
-      <nav aria-label="페이지 목차" className="hidden xl:flex flex-col gap-2 fixed top-40 text-sm"
-           style={{ right: "max(1.5rem, calc(50% - 24rem - 11rem))", width: "9rem" }}>
-        <span className="mono text-xs mb-1" style={{ color: "var(--muted)" }}>목차</span>
-        {[
-          ["#s-contrib", "주요 기여"],
-          ...(p.troubleSlugs.length > 0 ? [["#s-troubles", "트러블슈팅"]] : []),
-          ["#s-results", "결과 · 배운 점"],
-        ].map(([href, label]) => (
-          <a key={href} href={href} className="hover:opacity-100 opacity-60 transition-opacity"
-             style={{ color: "var(--muted)" }}>{label}</a>
-        ))}
-      </nav>
       <div className="py-4">
         <BackLink href="/#projects" label="목록으로" />
       </div>
@@ -159,27 +147,6 @@ export default async function ProjectPage({
           </div>
         </section>
       )}
-
-      <section id="s-results" className="pb-12 scroll-mt-20">
-        <SectionLabel index={p.troubleSlugs.length > 0 ? "03" : "02"} title="결과 · 배운 점" />
-        <ul className="space-y-2 text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
-          {p.results.map((r, i) => <li key={i}>· {r}</li>)}
-        </ul>
-      </section>
-
-      <details className="mb-12 rounded-lg" style={{ border: "1px solid var(--border)" }}>
-        <summary className="px-4 py-3 cursor-pointer text-sm font-medium list-none select-none" style={{ color: "var(--muted)" }}>
-          부록 — 기술 선택 이유 ▾
-        </summary>
-        <div className="space-y-3 px-4 pb-4">
-          {p.stack.map((st) => (
-            <div key={st.name} className="flex flex-col sm:flex-row gap-1 sm:gap-4">
-              <span className="text-sm font-medium sm:w-52 shrink-0">{st.name}</span>
-              <span className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>{st.why}</span>
-            </div>
-          ))}
-        </div>
-      </details>
 
       <footer className="pt-8" style={{ borderTop: "1px solid var(--border)" }}>
         <div className="pt-6"><BackLink href="/#projects" label="목록으로" /></div>
